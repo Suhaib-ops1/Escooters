@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>RIDEZONE | Home</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;display=swap">
+    <link rel="stylesheet" href="~/assets/css/plugins.css" />
+    <link rel="stylesheet" href="~/assets/css/animate.css" />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+    @* <link rel="stylesheet" href="~/Escooters.styles.css" asp-append-version="true" /> *@
+</head>
+<body>
+    <!-- Progress scroll totop -->
+    <div class="progress-wrap cursor-pointer">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo-wrapper">
+                <a style="text-transform: uppercase;" class="logo" href="index.html">
+                    <h2>EcoRide<span>Jordan</span></h2>
+                </a>
+            </div>
+            <!-- Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
+                    aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+            </button>
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" asp-action="Home" asp-controller="Users"
+                           role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                           aria-expanded="false">Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" asp-action="About" asp-controller="Users">About</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-action="Service" asp-controller="Users">Services</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            Bike <i class="ti-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-action="Bike" asp-controller="Users" class="dropdown-item"><span>Vehicle Rentals</span></a></li>
+                            <li><a asp-action="Bike_detailes" asp-controller="Users" class="dropdown-item"><span>Bikes Details</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" asp-action="Contact" asp-controller="Users">Contact</a></li>
+                </ul>
+                <!-- <div class="navbar-right">
+                    <div class="wrap">
+                        <div class="icon"> <i class="flaticon-phone-call"></i> </div>
+                        <div class="text">
+                            <p>Need help?</p>
+                            <h5><a href="tel:01234567890">123 456 7890</a></h5>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </nav>
+    <div>
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+    <!-- Footer -->
+    <footer class="footer clearfix">
+        <div class="container">
+            <!-- first footer -->
+            <div class="first-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="links dark footer-contact-links">
+                            <div class="footer-contact-links-wrapper">
+                                <div class="wow fadeInLeft footer-contact-link-wrapper">
+                                    <div class="image-wrapper footer-contact-link-icon">
+                                        <div class="icon-footer"> <i class="flaticon-phone-call"></i> </div>
+                                    </div>
+                                    <div class="footer-contact-link-content">
+                                        <h6>Call us</h6>
+                                        <p>+0123-456-789</p>
+                                    </div>
+                                </div>
+                                <div class="footer-contact-links-divider"></div>
+                                <div class="wow fadeInUp footer-contact-link-wrapper">
+                                    <div class="image-wrapper footer-contact-link-icon">
+                                        <div class="icon-footer"> <i class="omfi-envelope"></i> </div>
+                                    </div>
+                                    <div class="footer-contact-link-content">
+                                        <h6>Write to us</h6>
+                                        <p>demo@example.com</p>
+                                    </div>
+                                </div>
+                                <div class="footer-contact-links-divider"></div>
+                                <div class="wow fadeInRight footer-contact-link-wrapper">
+                                    <div class="image-wrapper footer-contact-link-icon">
+                                        <div class="icon-footer"> <i class="omfi-location"></i> </div>
+                                    </div>
+                                    <div class="footer-contact-link-content">
+                                        <h6>Address</h6>
+                                        <p>123 Street, City, Country</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- second footer -->
+            <div class="wow fadeInUp second-footer">
+                <div class="row">
+                    <!-- about & social icons -->
+                    <div class="col-md-4 widget-area">
+                        <div class="widget clearfix">
+                            <div class="footer-logo">
+                                <h2>EcoRide<span>Jordan</span></h2>
+                            </div>
+                            <div class="widget-text">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. otam Porro, total
+                                    reiciendis sunt.
+                                </p>
+                                <div class="accepts">
+
+                                    <ul class="d-flex ">
+                                        <li><img class="img-fluid w-100" src="~/assets/img/icon-pay-01.png" alt="1"></li>
+                                        <li><img class="img-fluid w-100" src="~/assets/img/icon-pay-02.png" alt="1"></li>
+                                        <li><img class="img-fluid w-100" src="~/assets/img/icon-pay-03.png" alt="1"></li>
+                                        <li><img class="img-fluid w-100" src="~/assets/img/icon-pay-04.png" alt="1"></li>
+                                        <li><img class="img-fluid w-100" src="~/assets/img/icon-pay-05.png" alt="1"></li>
+                                    </ul>
+                                </div>
+                                <div class="social-icons">
+                                    <ul class="list-inline">
+                                        <li><a href="#"><i class="fa-brands fa-whatsapp"></i></a></li>
+                                        <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                                        <!-- linkedin -->
+                                        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- quick links -->
+                    <div class="col-md-3 offset-md-1 widget-area">
+                        <div class="widget clearfix usful-links">
+                            <h3 class="widget-title">Usefull Links</h3>
+                            <ul>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="bikes.html">Bike</a></li>
+                                <li><a href="bike-details.html">Bike Details</a></li>
+                                <li><a href="team.html">Team</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- subscribe -->
+                    <div class="col-md-4 widget-area">
+                        <div class="widget clearfix">
+                            <h3 class="widget-title">Subscribe</h3>
+                            <p>
+                                Want to be notified about our services. Just sign up and we'll send you a notification by
+                                email.
+                            </p>
+                            <div class="widget-newsletter">
+                                <form action="#">
+                                    <input type="email" placeholder="Email Address" required>
+                                    <button type="submit"><i class="ti-arrow-top-right"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- bottom footer -->
+            <div class="bottom-footer-text">
+                <div class="row copyright">
+                    <div class="col-md-12">
+                        <p class="mb-0 text-center">&copy;2024 <a target="_blank" href="https://www.templatemonster.com/authors/themes_heaven/">Themes_Heaven</a>. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- jQuery -->
+    <script src="~/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="~/assets/js/jquery-migrate-3.4.1.min.js"></script>
+    <script src="~/assets/js/modernizr-2.6.2.min.js"></script>
+    <script src="~/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/js/jquery.isotope.v3.0.2.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/scrollIt.min.js"></script>
+    <script src="~/assets/js/jquery.waypoints.min.js"></script>
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <script src="~/assets/js/jquery.stellar.min.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.js"></script>
+    <script src="~/assets/js/select2.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
+    <script src="~/assets/js/datepicker.js"></script>
+    <script src="~/assets/js/YouTubePopUp.js"></script>
+    <script src="~/assets/js/vegas.slider.min.js"></script>
+    <script src="~/assets/js/custom.js"></script>
+    <!-- slide show -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
