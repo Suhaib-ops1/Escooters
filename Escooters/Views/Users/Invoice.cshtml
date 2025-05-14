@@ -1,0 +1,78 @@
+﻿@model Escooters.Models.Booking
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 700px;
+            margin: auto;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Invoice - Booking #@Model.BookingId</h2>
+        <p><strong>Name:</strong> @Model.User.FullName</p>
+        <p><strong>Email:</strong> @Model.User.Email</p>
+        <p><strong>Bike:</strong> @Model.Bike.Name</p>
+        <p><strong>Pickup Date:</strong> @Model.PickupDate.ToShortDateString()</p>
+        <p><strong>Return Date:</strong> @Model.ReturnDate.ToShortDateString()</p>
+        <p><strong>Status:</strong> @Model.Status</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th class="text-right">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rental Cost</td>
+                    <td class="text-right">@Model.TotalCost.ToString("0.00") JOD</td>
+                </tr>
+                <tr>
+                    <td><strong>Total Paid</strong></td>
+                    <td class="text-right"><strong>@Model.TotalCost.ToString("0.00") JOD</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="text-right" style="margin-top: 20px;"><em>Thank you for booking with us.</em></p>
+    </div>
+</body>
+</html>

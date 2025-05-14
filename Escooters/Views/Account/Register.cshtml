@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container mt-5 text-white">
+    <div class="card bg-dark p-4 mx-auto" style="max-width: 500px; border-radius: 20px;">
+        <h3 class="text-center mb-4">Register</h3>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        <form asp-action="Register" method="post">
+            <div class="mb-3">
+                <label>Full Name</label>
+                <input name="FullName" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label>Email</label>
+                <input name="Email" type="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <input name="Password" type="password" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label>Confirm Password</label>
+                <input name="ConfirmPassword" type="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-success w-100 rounded-pill">Register</button>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿@model Escooters.Models.Bike
+@{
+    ViewData["Title"] = "Book Bike";
+    var pricePerDay = Model.PricePerDay;
+}
+
+<section class="section-padding bg-dark text-white">
+    <div class="container">
+        <h3 class="mb-4">Book: <span class="text-info">@Model.Name</span></h3>
+
+        <!-- Booking Form -->
+        <form asp-action="ConfirmBooking" method="post" id="bookingForm">
+            <input type="hidden" name="BikeId" value="@Model.BikeId" />
+            <input type="hidden" id="pricePerDay" value="@pricePerDay" />
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Pick-up Date</label>
+                    <input type="date" name="PickupDate" id="pickupDate" class="form-control" required />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Return Date</label>
+                    <input type="date" name="ReturnDate" id="returnDate" class="form-control" required />
+                </div>
+
+                <div class="col-md-12">
+                    <div class="alert alert-info mt-3" id="priceDisplay" style="display:none;">
+                        <strong>Total Price:</strong> <span id="totalDays">0</span> × @pricePerDay =
+                        <strong><span id="totalPrice">0</span> JOD</strong>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary w-100 mt-3" id="submitBtn" disabled>Confirm Booking</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- After confirming, go to payment -->
+        @if (TempData["BookingConfirmed"] != null)
+        {
+            <div class="mt-4">
+                <a asp-action="Payment" asp-route-bookingId="@TempData["BookingConfirmed"]" class="btn btn-success w-100">
+                    Proceed to Payment
+                </a>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        const pickupInput = document.getElementById("pickupDate");
+        const returnInput = document.getElementById("returnDate");
+        const totalPriceSpan = document.getElementById("totalPrice");
+        const totalDaysSpan = document.getElementById("totalDays");
+        const pricePerDay = parseFloat(document.getElementById("pricePerDay").value);
+        const priceDisplay = document.getElementById("priceDisplay");
+        const submitBtn = document.getElementById("submitBtn");
+
+        function updateTotal() {
+            const pickup = new Date(pickupInput.value);
+            const ret = new Date(returnInput.value);
+            const timeDiff = ret - pickup;
+            const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+            if (days > 0) {
+                totalDaysSpan.innerText = days;
+                totalPriceSpan.innerText = (days * pricePerDay).toFixed(2);
+                priceDisplay.style.display = 'block';
+                submitBtn.disabled = false;
+            } else {
+                priceDisplay.style.display = 'none';
+                submitBtn.disabled = true;
+            }
+        }
+
+        pickupInput.addEventListener("change", updateTotal);
+        returnInput.addEventListener("change", updateTotal);
+    </script>
+}

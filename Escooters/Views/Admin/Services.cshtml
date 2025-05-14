@@ -1,0 +1,53 @@
+﻿@model List<Escooters.Models.Service>
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Manage Services";
+}
+
+<h2 class="mb-4">Manage Services</h2>
+
+<a class="btn btn-success mb-3" asp-action="AddService">Add New Service</a>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<table class="table table-dark table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Icon</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ServiceId</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.IconUrl))
+                    {
+                        <img src="@item.IconUrl" style="width: 50px; height: 50px;" />
+                    }
+                </td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>
+                <td class="d-flex gap-2">
+                    <a class="btn btn-sm btn-primary" asp-action="EditService" asp-route-id="@item.ServiceId">Edit</a>
+
+                    <form asp-action="DeleteService" asp-route-id="@item.ServiceId" method="post"
+                          onsubmit="return confirm('Are you sure you want to delete this service?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model List<Escooters.Models.ContactMessage>
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Contact Messages";
+}
+
+<h2 class="mb-4">Contact Messages</h2>
+
+<table class="table table-dark table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var msg in Model)
+        {
+            <tr>
+                <td>@msg.MessageId</td>
+                <td>@msg.FullName</td>
+                <td>@msg.Email</td>
+                <td>@msg.PhoneNumber</td>
+                <td>@msg.Subject</td>
+                <td>@msg.Message</td>
+                <td>@msg.SentDate?.ToString("yyyy-MM-dd HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>

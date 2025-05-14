@@ -1,0 +1,24 @@
+﻿@model Escooters.Models.Service
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Add Service";
+}
+
+<h2 class="mb-4">Add New Service</h2>
+
+<form asp-action="AddService" enctype="multipart/form-data" method="post">
+    <div class="mb-3">
+        <label>Title</label>
+        <input asp-for="Title" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Icon</label>
+        <input type="file" name="IconFile" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Add Service</button>
+    <a asp-action="Services" class="btn btn-link">Back</a>
+</form>

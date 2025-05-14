@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container mt-5 text-white">
+    <div class="card bg-dark p-4 mx-auto" style="max-width: 500px; border-radius: 20px;">
+        <h3 class="text-center mb-4">Login</h3>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label>Email</label>
+                <input name="Email" type="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <input name="Password" type="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill">Login</button>
+        </form>
+
+        <p class="text-center mt-3">
+            Don’t have an account?
+            <a href="/Account/Register" class="text-info">Register here</a>
+        </p>
+    </div>
+</div>
+@if (TempData["Success"] != null)
+{
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '@TempData["Success"]'
+        });
+    </script>
+}

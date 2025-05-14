@@ -1,0 +1,70 @@
+﻿@model List<Escooters.Models.Payment>
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Payments";
+    var totalAmount = Model.Sum(p => p.Amount);
+}
+
+<h2 class="mb-4">Payments</h2>
+
+<!-- Filter Section -->
+<form method="get" class="row g-3 mb-4">
+    <div class="col-md-3">
+        <label class="form-label text-white">Payment Method</label>
+        <select name="method" class="form-select">
+            <option value="All" selected="@(ViewBag.Method == null || ViewBag.Method == "All")">All</option>
+            <option value="Cash" selected="@(ViewBag.Method == "Cash")">Cash</option>
+            <option value="CreditCard" selected="@(ViewBag.Method == "CreditCard")">CreditCard</option>
+            <option value="Visa" selected="@(ViewBag.Method == "Visa")">Visa</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label text-white">From</label>
+        <input type="date" name="fromDate" value="@ViewBag.From" class="form-control" />
+    </div>
+    <div class="col-md-3">
+        <label class="form-label text-white">To</label>
+        <input type="date" name="toDate" value="@ViewBag.To" class="form-control" />
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Filter</button>
+    </div>
+</form>
+
+<!-- Total Amount -->
+<div class="mb-3">
+    <h5 class="text-success">Total Amount Paid: <strong>@totalAmount.ToString("0.00") JOD</strong></h5>
+</div>
+
+<!-- Payments Table -->
+<table class="table table-dark table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>User</th>
+            <th>Booking</th>
+            <th>Amount (JOD)</th>
+            <th>Method</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+            <tr>
+                <td>@payment.PaymentId</td>
+                <td>@payment.User?.FullName</td>
+                <td>@payment.BookingId</td>
+                <td>@payment.Amount.ToString("0.00")</td>
+                <td>@payment.PaymentMethod</td>
+                <td>
+                    <span class="badge bg-@(payment.Status == "Paid" ? "success" : "warning")">
+                        @payment.Status
+                    </span>
+                </td>
+                <td>@payment.PaymentDate.ToString("yyyy-MM-dd HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>

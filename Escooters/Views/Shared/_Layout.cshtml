@@ -56,6 +56,32 @@
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" asp-action="Contact" asp-controller="Users">Contact</a></li>
+
+
+                    @if (Context.Session.GetInt32("UserID") == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Login" asp-controller="Account">Login</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                @Context.Session.GetString("UserName")
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" asp-action="Profile" asp-controller="Account">Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="ResetPassword" asp-controller="Account">Reset Password</a></li>
+                                <li><a class="dropdown-item" asp-action="MyBookings" asp-controller="Users">My Bookings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" asp-action="Logout" asp-controller="Account">Logout</a></li>
+                            </ul>
+
+                        </li>
+                    }
+
+
                 </ul>
                 <!-- <div class="navbar-right">
                     <div class="wrap">

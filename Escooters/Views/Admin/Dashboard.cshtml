@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card card-dashboard p-4 text-center">
+            <h5>Total Users</h5>
+            <div class="count">@ViewBag.UserCount</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-dashboard p-4 text-center">
+            <h5>Total Bikes</h5>
+            <div class="count">@ViewBag.BikeCount</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-dashboard p-4 text-center">
+            <h5>Total Services</h5>
+            <div class="count">@ViewBag.ServiceCount</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-dashboard p-4 text-center">
+            <h5>Contact Messages</h5>
+            <div class="count">@ViewBag.ContactCount</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-dashboard p-4 text-center">
+            <h5>Total Payments</h5>
+            <div class="count">@ViewBag.PaymentCount</div>
+        </div>
+    </div>
+</div>

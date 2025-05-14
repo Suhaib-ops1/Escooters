@@ -1,4 +1,9 @@
-﻿
+﻿@model List<Escooters.Models.Service>
+@{
+    ViewData["Title"] = "Our Services";
+    int count = 1;
+}
+
     <!-- Header Banner -->
     <section class="banner-header section-padding bg-img" data-overlay-dark="6" data-background="/assets/img/slider/11.jpg">
         <div class="v-middle">
@@ -14,195 +19,245 @@
     </section>
 
     <!-- Services Box 2 -->
-    <section class="services-box2 section-padding">
-        <div class="container">
-            <div class="row">
+
+
+<section class="services-box2 section-padding">
+    <div class="container">
+        <div class="row">
+
+            @foreach (var service in Model)
+            {
+                string animation = count % 3 == 1 ? "fadeInLeft"
+                : count % 3 == 2 ? "fadeInUp"
+                : "fadeInRight";
                 <div class="col-md-4 mb-45">
-                    <div class="wow fadeInLeft item">
+                    <div class="wow @animation item">
                         <div class="text">
-                            <h5>Corporate Bike Rental</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan
-                                lacinia feugiat nunc eu aucton.
-                            </p>
+                            <h5>@service.Title</h5>
+                            <p>@service.Description</p>
                         </div>
                         <div class="numb">
                             <div class="numb-curv">
-                                <div class="number">01.</div>
+                                <div class="number">@count.ToString("00").</div>
                                 <div class="shap-left-top">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
+                                    <svg viewBox="0 0 11 11" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg" class="w-11 h-11">
+                                        <path d="M11 0L0 0L0 11C0 4.92487 4.92487 0 11 0Z" fill="#1b1b1b"></path>
                                     </svg>
                                 </div>
                                 <div class="shap-right-bottom">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
+                                    <svg viewBox="0 0 11 11" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg" class="w-11 h-11">
+                                        <path d="M11 0L0 0L0 11C0 4.92487 4.92487 0 11 0Z" fill="#1b1b1b"></path>
                                     </svg>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-45">
-                    <div class="wow fadeInUp item">
-                        <div class="text">
-                            <h5>Bike Rental with Driver</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan
-                                lacinia feugiat nunc eu aucton.
-                            </p>
-                        </div>
-                        <div class="numb">
-                            <div class="numb-curv">
-                                <div class="number">02.</div>
-                                <div class="shap-left-top">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                                <div class="shap-right-bottom">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-45">
-                    <div class="wow fadeInRight item">
-                        <div class="text">
-                            <h5>Airport Transfer</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan
-                                lacinia feugiat nunc eu aucton.
-                            </p>
-                        </div>
-                        <div class="numb">
-                            <div class="numb-curv">
-                                <div class="number">03.</div>
-                                <div class="shap-left-top">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                                <div class="shap-right-bottom">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="wow fadeInUp col-md-4 mb-45">
-                    <div class="item">
-                        <div class="text">
-                            <h5>Fleet Leasing</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan
-                                lacinia feugiat nunc eu aucton.
-                            </p>
-                        </div>
-                        <div class="numb">
-                            <div class="numb-curv">
-                                <div class="number">04.</div>
-                                <div class="shap-left-top">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                                <div class="shap-right-bottom">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-45">
-                    <div class="item">
-                        <div class="text">
-                            <h5>VIP Transfer</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan
-                                lacinia feugiat nunc eu aucton.
-                            </p>
-                        </div>
-                        <div class="numb">
-                            <div class="numb-curv">
-                                <div class="number">05.</div>
-                                <div class="shap-left-top">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                                <div class="shap-right-bottom">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-45">
-                    <div class="item">
-                        <div class="text">
-                            <h5>Private Transfer</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan
-                                lacinia feugiat nunc eu aucton.
-                            </p>
-                        </div>
-                        <div class="numb">
-                            <div class="numb-curv">
-                                <div class="number">06.</div>
-                                <div class="shap-left-top">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                                <div class="shap-right-bottom">
-                                    <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                         class="w-11 h-11">
-                                        <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z"
-                                              fill="#1b1b1b"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                count++;
+            }
+
         </div>
-    </section>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+    @* <section class="services-box2 section-padding"> *@
+    @*     <div class="container"> *@
+    @*         <div class="row"> *@
+    @*             <div class="col-md-4 mb-45"> *@
+    @*                 <div class="wow fadeInLeft item"> *@
+    @*                     <div class="text"> *@
+    @*                         <h5>Corporate Bike Rental</h5> *@
+    @*                         <p> *@
+    @*                             Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan *@
+    @*                             lacinia feugiat nunc eu aucton. *@
+    @*                         </p> *@
+    @*                     </div> *@
+    @*                     <div class="numb"> *@
+    @*                         <div class="numb-curv"> *@
+    @*                             <div class="number">01.</div> *@
+    @*                             <div class="shap-left-top"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                             <div class="shap-right-bottom"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                         </div> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*             </div> *@
+    @*             <div class="col-md-4 mb-45"> *@
+    @*                 <div class="wow fadeInUp item"> *@
+    @*                     <div class="text"> *@
+    @*                         <h5>Bike Rental with Driver</h5> *@
+    @*                         <p> *@
+    @*                             Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan *@
+    @*                             lacinia feugiat nunc eu aucton. *@
+    @*                         </p> *@
+    @*                     </div> *@
+    @*                     <div class="numb"> *@
+    @*                         <div class="numb-curv"> *@
+    @*                             <div class="number">02.</div> *@
+    @*                             <div class="shap-left-top"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                             <div class="shap-right-bottom"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                         </div> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*             </div> *@
+    @*             <div class="col-md-4 mb-45"> *@
+    @*                 <div class="wow fadeInRight item"> *@
+    @*                     <div class="text"> *@
+    @*                         <h5>Airport Transfer</h5> *@
+    @*                         <p> *@
+    @*                             Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan *@
+    @*                             lacinia feugiat nunc eu aucton. *@
+    @*                         </p> *@
+    @*                     </div> *@
+    @*                     <div class="numb"> *@
+    @*                         <div class="numb-curv"> *@
+    @*                             <div class="number">03.</div> *@
+    @*                             <div class="shap-left-top"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                             <div class="shap-right-bottom"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                         </div> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*             </div> *@
+    @*             <div class="wow fadeInUp col-md-4 mb-45"> *@
+    @*                 <div class="item"> *@
+    @*                     <div class="text"> *@
+    @*                         <h5>Fleet Leasing</h5> *@
+    @*                         <p> *@
+    @*                             Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan *@
+    @*                             lacinia feugiat nunc eu aucton. *@
+    @*                         </p> *@
+    @*                     </div> *@
+    @*                     <div class="numb"> *@
+    @*                         <div class="numb-curv"> *@
+    @*                             <div class="number">04.</div> *@
+    @*                             <div class="shap-left-top"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                             <div class="shap-right-bottom"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                         </div> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*             </div> *@
+    @*             <div class="col-md-4 mb-45"> *@
+    @*                 <div class="item"> *@
+    @*                     <div class="text"> *@
+    @*                         <h5>VIP Transfer</h5> *@
+    @*                         <p> *@
+    @*                             Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan *@
+    @*                             lacinia feugiat nunc eu aucton. *@
+    @*                         </p> *@
+    @*                     </div> *@
+    @*                     <div class="numb"> *@
+    @*                         <div class="numb-curv"> *@
+    @*                             <div class="number">05.</div> *@
+    @*                             <div class="shap-left-top"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                             <div class="shap-right-bottom"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                         </div> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*             </div> *@
+    @*             <div class="col-md-4 mb-45"> *@
+    @*                 <div class="item"> *@
+    @*                     <div class="text"> *@
+    @*                         <h5>Private Transfer</h5> *@
+    @*                         <p> *@
+    @*                             Lorem ipsum dolor sit amet the consectetur adipiscing elit entesque hendrerit elit nisan *@
+    @*                             lacinia feugiat nunc eu aucton. *@
+    @*                         </p> *@
+    @*                     </div> *@
+    @*                     <div class="numb"> *@
+    @*                         <div class="numb-curv"> *@
+    @*                             <div class="number">06.</div> *@
+    @*                             <div class="shap-left-top"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                             <div class="shap-right-bottom"> *@
+    @*                                 <svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" *@
+    @*                                      class="w-11 h-11"> *@
+    @*                                     <path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" *@
+    @*                                           fill="#1b1b1b"></path> *@
+    @*                                 </svg> *@
+    @*                             </div> *@
+    @*                         </div> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*             </div> *@
+    @*         </div> *@
+    @*     </div> *@
+    @* </section> *@
     <!-- Booking Search -->
     <section class="background bg-img bg-fixed section-padding" data-overlay-dark="5"
-             data-background="/assets/img/slider/2.jpg">
+         data-background="/Uploads/4e309410-aaaa-4b5d-ba97-be53f611a619home_bike.jpg">
         <div class="wow fadeInUp container">
             <div class="row">
                 <div class="col-md-12 text-center mb-15">

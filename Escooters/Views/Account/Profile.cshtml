@@ -1,0 +1,20 @@
+﻿@model Escooters.Models.User
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="container mt-5 text-white">
+    <div class="card bg-dark p-4 mx-auto" style="max-width: 600px; border-radius: 20px;">
+        <div class="text-center mb-4">
+            <img src="@Model.ProfileImage" class="rounded-circle shadow" style="width: 120px; height: 120px;" alt="Profile Image" />
+            <h4 class="mt-2">@Model.FullName</h4>
+            <p class="text-muted mb-1">@Model.Email</p>
+            <p class="text-muted">@Model.PhoneNumber</p>
+        </div>
+
+        <div class="d-flex justify-content-center gap-3">
+            <a href="@Url.Action("EditProfile", "Account")" class="btn btn-primary">Edit Profile</a>
+            <a href="@Url.Action("ResetPassword", "Account")" class="btn btn-outline-light">Reset Password</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model List<Escooters.Models.Booking>
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "All Bookings";
+}
+
+<h2 class="mb-4">All Bookings</h2>
+<table class="table table-dark table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>User</th>
+            <th>Bike</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Total Days</th>
+            <th>Total Cost</th>
+            <th>Payment Method</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.BookingId</td>
+                <td>@booking.User?.FullName</td>
+                <td>@booking.Bike?.Name</td>
+                <td>@booking.PickupDate.ToString("yyyy-MM-dd")</td>
+                <td>@booking.ReturnDate.ToString("yyyy-MM-dd")</td>
+                <td>@((booking.ReturnDate - booking.PickupDate).Days)</td>
+                <td>@booking.TotalCost JOD</td>
+                <td>
+                    @(booking.Payments.FirstOrDefault()?.PaymentMethod ?? "Not Paid")
+                </td>
+                <td>@booking.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
