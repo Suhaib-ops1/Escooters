@@ -20,8 +20,13 @@ namespace Escooters.Controllers
             ViewBag.ServiceCount = _context.Services.Count();
             ViewBag.ContactCount = _context.ContactMessages.Count();
             ViewBag.PaymentCount = _context.Payments.Count();
-
-            return View();
+            if (HttpContext.Session.GetInt32("UserID") != null)
+            {
+                return View();
+            }
+            else { 
+                return RedirectToAction("Login","Account");
+            }
         }
 
 

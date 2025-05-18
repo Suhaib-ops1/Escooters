@@ -1,4 +1,5 @@
-﻿@* @model Escooters.Models.Booking *@
+﻿
+@* @model Escooters.Models.Booking *@
 @* @{ *@
 @*     ViewData["Title"] = "Payment"; *@
 @*     var user = Model.User; *@
@@ -30,10 +31,140 @@
 @*                 </select> *@
 @*             </div> *@
 
-@*             <button type="submit" class="btn btn-success w-100">Pay Now</button> *@
+@*             <!-- Dynamic extra fields go here --> *@
+@*             <div id="extraFields" class="mt-3" style="display:none;"></div> *@
+
+@*             <button type="submit" class="btn btn-success w-100 mt-3">Pay Now</button> *@
 @*         </form> *@
 @*     </div> *@
 @* </section> *@
+
+@* @section Scripts { *@
+@*     <script> *@
+@*         const methodSelect = document.querySelector("select[name='PaymentMethod']"); *@
+@*         const extraFieldsDiv = document.getElementById("extraFields"); *@
+
+@*         methodSelect.addEventListener("change", function () { *@
+@*             const value = this.value; *@
+
+@*             if (value === "CreditCard" || value === "Visa") { *@
+@*                 extraFieldsDiv.innerHTML = ` *@
+@*                     <div class="mb-3"> *@
+@*                         <label class="form-label">Card Number</label> *@
+@*                         <input type="text" class="form-control" placeholder="1234 5678 9012 3456" required /> *@
+@*                     </div> *@
+@*                     <div class="mb-3"> *@
+@*                         <label class="form-label">Card Holder Name</label> *@
+@*                         <input type="text" class="form-control" placeholder="John Doe" required /> *@
+@*                     </div> *@
+@*                     <div class="mb-3"> *@
+@*                         <label class="form-label">Expiry Date</label> *@
+@*                         <input type="month" class="form-control" required /> *@
+@*                     </div> *@
+@*                     <div class="mb-3"> *@
+@*                         <label class="form-label">CVV</label> *@
+@*                         <input type="password" class="form-control" maxlength="4" placeholder="123" required /> *@
+@*                     </div> *@
+@*                 `; *@
+@*                 extraFieldsDiv.style.display = "block"; *@
+@*             } else { *@
+@*                 extraFieldsDiv.innerHTML = ""; *@
+@*                 extraFieldsDiv.style.display = "none"; *@
+@*             } *@
+@*         }); *@
+@*     </script> *@
+    @* @* } 
+    @* @model Escooters.Models.Booking *@
+    @* @{ *@
+    @*     ViewData["Title"] = "Payment"; *@
+    @*     var user = Model.User; *@
+    @*     var bike = Model.Bike; *@
+    @* } *@
+
+    @* <section class="section-padding bg-dark text-white"> *@
+    @*     <div class="container"> *@
+    @*         <h3 class="mb-4">Payment for Booking #@Model.BookingId</h3> *@
+
+    @*         <div class="mb-4"> *@
+    @*             <p><strong>Bike:</strong> @bike.Name</p> *@
+    @*             <p><strong>From:</strong> @Model.PickupDate.ToShortDateString()</p> *@
+    @*             <p><strong>To:</strong> @Model.ReturnDate.ToShortDateString()</p> *@
+    @*             <p><strong>Total Cost:</strong> <span class="text-info">@Model.TotalCost.ToString("0.00") JOD</span></p> *@
+    @*         </div> *@
+
+    @*         <form asp-action="ProcessPayment" method="post"> *@
+    @*             <input type="hidden" name="BookingId" value="@Model.BookingId" /> *@
+    @*             <input type="hidden" name="Amount" value="@Model.TotalCost" /> *@
+
+    @*             <div class="mb-3"> *@
+    @*                 <label class="form-label">Select Payment Method</label> *@
+    @*                 <select name="PaymentMethod" class="form-select" id="paymentMethod" required> *@
+    @*                     <option value="">-- Choose --</option> *@
+    @*                     <option value="Cash">Cash</option> *@
+    @*                     <option value="CreditCard">Credit Card</option> *@
+    @*                     <option value="Visa">Visa</option> *@
+    @*                 </select> *@
+    @*             </div> *@
+
+    @*             <!-- Card Details (conditionally shown) --> *@
+    @*             <div id="cardDetails" style="display:none;"> *@
+    @*                 <div class="mb-3"> *@
+    @*                     <label class="form-label">Card Number</label> *@
+    @*                     <input type="text" class="form-control" name="CardNumber" placeholder="1234 5678 9012 3456" /> *@
+    @*                 </div> *@
+    @*                 <div class="mb-3"> *@
+    @*                     <label class="form-label">Card Holder Name</label> *@
+    @*                     <input type="text" class="form-control" name="CardHolderName" placeholder="John Doe" /> *@
+    @*                 </div> *@
+    @*                 <div class="row"> *@
+    @*                     <div class="col-md-6 mb-3"> *@
+    @*                         <label class="form-label">Expiry Date</label> *@
+    @*                         <input type="month" class="form-control" name="ExpiryDate" /> *@
+    @*                     </div> *@
+    @*                     <div class="col-md-6 mb-3"> *@
+    @*                         <label class="form-label">CVV</label> *@
+    @*                         <input type="password" class="form-control" name="CVV" maxlength="4" placeholder="123" /> *@
+    @*                     </div> *@
+    @*                 </div> *@
+    @*             </div> *@
+
+    @*             <button type="submit" class="btn btn-success w-100 mt-3">Pay Now</button> *@
+    @*         </form> *@
+    @*     </div> *@
+    @* </section> *@
+
+    @* @section Scripts { *@
+    @*     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> *@
+
+    @*     <script> *@
+    @*         // Show/hide card fields *@
+    @*         const methodSelect = document.getElementById("paymentMethod"); *@
+    @*         const cardFields = document.getElementById("cardDetails"); *@
+
+    @*         methodSelect.addEventListener("change", () => { *@
+    @*             if (methodSelect.value === "CreditCard" || methodSelect.value === "Visa") { *@
+    @*                 cardFields.style.display = "block"; *@
+    @*             } else { *@
+    @*                 cardFields.style.display = "none"; *@
+    @*             } *@
+    @*         }); *@
+
+    @*         // SweetAlert if TempData exists *@
+    @*         @if (TempData["Success"] != null) *@
+    @*         { *@
+    @*             <text> *@
+    @*                     Swal.fire({ *@
+    @*                         icon: 'success', *@
+    @*                         title: 'Payment Completed', *@
+    @*                         text: '@TempData["Success"]', *@
+    @*                         confirmButtonColor: '#198754' *@
+    @*                     }); *@
+    @*             </text> *@
+    @*         } *@
+    @*     </script> *@
+    @* } *@
+
+
 @model Escooters.Models.Booking
 @{
     ViewData["Title"] = "Payment";
@@ -58,7 +189,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Select Payment Method</label>
-                <select name="PaymentMethod" class="form-select" required>
+                <select name="PaymentMethod" class="form-select" id="paymentMethod" required>
                     <option value="">-- Choose --</option>
                     <option value="Cash">Cash</option>
                     <option value="CreditCard">Credit Card</option>
@@ -66,8 +197,27 @@
                 </select>
             </div>
 
-            <!-- Dynamic extra fields go here -->
-            <div id="extraFields" class="mt-3" style="display:none;"></div>
+            <!-- Card Details (conditionally shown) -->
+            <div id="cardDetails" style="display:none;">
+                <div class="mb-3">
+                    <label class="form-label">Card Number</label>
+                    <input type="text" class="form-control" name="CardNumber" placeholder="1234 5678 9012 3456" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Card Holder Name</label>
+                    <input type="text" class="form-control" name="CardHolderName" placeholder="John Doe" />
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Expiry Date</label>
+                        <input type="month" class="form-control" name="ExpiryDate" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">CVV</label>
+                        <input type="password" class="form-control" name="CVV" maxlength="4" placeholder="123" />
+                    </div>
+                </div>
+            </div>
 
             <button type="submit" class="btn btn-success w-100 mt-3">Pay Now</button>
         </form>
@@ -76,35 +226,15 @@
 
 @section Scripts {
     <script>
-        const methodSelect = document.querySelector("select[name='PaymentMethod']");
-        const extraFieldsDiv = document.getElementById("extraFields");
+        // Show/hide card fields
+        const methodSelect = document.getElementById("paymentMethod");
+        const cardFields = document.getElementById("cardDetails");
 
-        methodSelect.addEventListener("change", function () {
-            const value = this.value;
-
-            if (value === "CreditCard" || value === "Visa") {
-                extraFieldsDiv.innerHTML = `
-                    <div class="mb-3">
-                        <label class="form-label">Card Number</label>
-                        <input type="text" class="form-control" placeholder="1234 5678 9012 3456" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Card Holder Name</label>
-                        <input type="text" class="form-control" placeholder="John Doe" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Expiry Date</label>
-                        <input type="month" class="form-control" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">CVV</label>
-                        <input type="password" class="form-control" maxlength="4" placeholder="123" required />
-                    </div>
-                `;
-                extraFieldsDiv.style.display = "block";
+        methodSelect.addEventListener("change", () => {
+            if (methodSelect.value === "CreditCard" || methodSelect.value === "Visa") {
+                cardFields.style.display = "block";
             } else {
-                extraFieldsDiv.innerHTML = "";
-                extraFieldsDiv.style.display = "none";
+                cardFields.style.display = "none";
             }
         });
     </script>

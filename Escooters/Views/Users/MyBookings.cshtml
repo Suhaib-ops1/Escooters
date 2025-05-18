@@ -16,7 +16,6 @@
             <table class="table table-bordered table-striped table-dark">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Bike</th>
                         <th>Pickup</th>
                         <th>Return</th>
@@ -28,7 +27,6 @@
                     @foreach (var booking in Model)
                     {
                         <tr>
-                            <td>@booking.BookingId</td>
                             <td>@booking.Bike.Name</td>
                             <td>@booking.PickupDate.ToShortDateString()</td>
                             <td>@booking.ReturnDate.ToShortDateString()</td>

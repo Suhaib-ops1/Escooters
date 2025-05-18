@@ -15,7 +15,10 @@ namespace Escooters.Controllers
         }
         public IActionResult Home()
         {
-            return View();
+            
+                return View();
+            
+            
         }
         
         public IActionResult About()
@@ -99,7 +102,7 @@ namespace Escooters.Controllers
                 PickupLocationId = 1, // still required for DB schema
                 DropoffLocationId = 1, // still required for DB schema
                 TotalCost = totalDays * bike.PricePerDay,
-                Status = "Pending"
+                Status = "Confirmed"
             };
 
             _context.Bookings.Add(booking);
@@ -111,7 +114,9 @@ namespace Escooters.Controllers
             TempData["BookingConfirmed"] = booking.BookingId;
             TempData["Success"] = "Booking confirmed successfully. Proceed to payment.";
 
-            return RedirectToAction("RentBike", "Users", new { id = BikeId });
+            //return RedirectToAction("Payment", "Users", new { id = BikeId });
+            return RedirectToAction("Payment", "Users", new { bookingId = booking.BookingId });
+
 
         }
 
