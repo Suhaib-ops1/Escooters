@@ -23,6 +23,8 @@ public partial class User
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
+    public virtual ICollection<Maintenance> Maintenances { get; set; } = new List<Maintenance>();
+
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 
     public virtual ICollection<Testimonial> Testimonials { get; set; } = new List<Testimonial>();

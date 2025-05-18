@@ -1,15 +1,76 @@
 ﻿@{
     ViewData["Title"] = "Login";
+    Layout = "_Layout";
 }
 
-<div class="container mt-5 text-white">
-    <div class="card bg-dark p-4 mx-auto" style="max-width: 500px; border-radius: 20px;">
-        <h3 class="text-center mb-4">Login</h3>
-
-        @if (TempData["Success"] != null)
-        {
-            <div class="alert alert-success">@TempData["Success"]</div>
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
         }
+
+        .login-container {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background-color: #121212;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.1);
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #00ffd1;
+        }
+
+        .form-label {
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 30px;
+            background-color: #1f1f1f;
+            border: 1px solid #00ffd1;
+            color: #eee;
+        }
+
+            .form-control::placeholder {
+                color: #888;
+            }
+
+        .btn-login {
+            background-color: #00ffd1;
+            color: #000;
+            font-weight: bold;
+            border-radius: 30px;
+        }
+
+            .btn-login:hover {
+                background-color: #00e0ba;
+            }
+
+        .text-muted {
+            color: #aaa !important;
+        }
+
+        .login-box a {
+            color: #00ffd1;
+        }
+    </style>
+}
+
+<div class="container login-container">
+    <div class="login-box">
+        <h3 class="login-title text-center">Welcome Back</h3>
 
         @if (ViewBag.Error != null)
         {
@@ -18,29 +79,20 @@
 
         <form asp-action="Login" method="post">
             <div class="mb-3">
-                <label>Email</label>
-                <input name="Email" type="email" class="form-control" required />
+                <label class="form-label">Email</label>
+                <input name="Email" class="form-control" type="email" placeholder="Enter your email" required />
             </div>
-            <div class="mb-3">
-                <label>Password</label>
-                <input name="Password" type="password" class="form-control" required />
-            </div>
-            <button type="submit" class="btn btn-primary w-100 rounded-pill">Login</button>
-        </form>
 
-        <p class="text-center mt-3">
-            Don’t have an account?
-            <a href="/Account/Register" class="text-info">Register here</a>
-        </p>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input name="Password" class="form-control" type="password" placeholder="Enter password" required />
+            </div>
+
+            <button type="submit" class="btn btn-login w-100 mb-3">Sign In</button>
+
+            <div class="text-center text-muted">
+                Don't have an account? <a asp-action="Register" asp-controller="Account"><strong>Create one</strong></a>
+            </div>
+        </form>
     </div>
 </div>
-@if (TempData["Success"] != null)
-{
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: '@TempData["Success"]'
-        });
-    </script>
-}

@@ -1,10 +1,74 @@
-﻿@{
+﻿<br />
+<br />
+@{
     ViewData["Title"] = "Register";
+    Layout = "_Layout";
 }
 
-<div class="container mt-5 text-white">
-    <div class="card bg-dark p-4 mx-auto" style="max-width: 500px; border-radius: 20px;">
-        <h3 class="text-center mb-4">Register</h3>
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        }
+
+        .register-container {
+            min-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-box {
+            background-color: #121212;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .register-title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #00ffd1;
+        }
+
+        .form-label {
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 30px;
+            background-color: #1f1f1f;
+            border: 1px solid #00ffd1;
+            color: #eee;
+        }
+
+            .form-control::placeholder {
+                color: #888;
+            }
+
+        .btn-register {
+            background-color: #00ffd1;
+            color: #000;
+            font-weight: bold;
+            border-radius: 30px;
+        }
+
+            .btn-register:hover {
+                background-color: #00e0ba;
+            }
+
+        .register-box a {
+            color: #00ffd1;
+        }
+    </style>
+}
+
+<div class="container register-container">
+    <div class="register-box">
+        <h3 class="register-title text-center">Create an Account</h3>
 
         @if (ViewBag.Error != null)
         {
@@ -13,23 +77,30 @@
 
         <form asp-action="Register" method="post">
             <div class="mb-3">
-                <label>Full Name</label>
-                <input name="FullName" class="form-control" required />
+                <label class="form-label">Full Name</label>
+                <input name="FullName" class="form-control" placeholder="Enter your name" required />
             </div>
-            <div class="mb-3">
-                <label>Email</label>
-                <input name="Email" type="email" class="form-control" required />
-            </div>
-            <div class="mb-3">
-                <label>Password</label>
-                <input name="Password" type="password" class="form-control" required />
-            </div>
-            <div class="mb-3">
-                <label>Confirm Password</label>
-                <input name="ConfirmPassword" type="password" class="form-control" required />
-            </div>
-            <button type="submit" class="btn btn-success w-100 rounded-pill">Register</button>
-        </form>
 
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input name="Email" type="email" class="form-control" placeholder="Enter your email" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input name="Password" type="password" class="form-control" placeholder="Enter password" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Confirm Password</label>
+                <input name="ConfirmPassword" type="password" class="form-control" placeholder="Re-enter password" required />
+            </div>
+
+            <button type="submit" class="btn btn-register w-100 mb-3">Register</button>
+
+            <div class="text-center text-muted">
+                Already have an account? <a asp-action="Login" asp-controller="Account"><strong>Login here</strong></a>
+            </div>
+        </form>
     </div>
 </div>

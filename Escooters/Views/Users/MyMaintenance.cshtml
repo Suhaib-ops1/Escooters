@@ -1,0 +1,46 @@
+﻿@model List<Escooters.Models.Maintenance>
+@{
+    ViewData["Title"] = "My Maintenance Requests";
+    Layout = "_Layout";
+}
+
+<section class="section-padding bg-dark text-white">
+    <div class="container">
+        <div class="bg-secondary bg-opacity-25 p-4 rounded shadow">
+            <h3 class="mb-4 text-info text-center">🛠 My Maintenance Requests</h3>
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-warning text-center">You haven't submitted any maintenance requests yet.</div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped text-center align-middle">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Bike Name</th>
+                                <th>Type</th>
+                                <th>Issue</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaintenanceId</td>
+                                    <td>@item.BikeName</td>
+                                    <td>@item.BikeType</td>
+                                    <td>@item.IssueDescription</td>
+                                    <td>@item.RequestDate</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</section>

@@ -23,6 +23,8 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<Location> Locations { get; set; }
 
+    public virtual DbSet<Maintenance> Maintenances { get; set; }
+
     public virtual DbSet<Payment> Payments { get; set; }
 
     public virtual DbSet<Service> Services { get; set; }
@@ -109,6 +111,25 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.LocationId).HasColumnName("LocationID");
             entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.LocationName).HasMaxLength(100);
+        });
+
+        modelBuilder.Entity<Maintenance>(entity =>
+        {
+            entity.HasKey(e => e.MaintenanceId).HasName("PK__Maintena__E60542B546AF9254");
+
+            entity.ToTable("Maintenance");
+
+            entity.Property(e => e.MaintenanceId).HasColumnName("MaintenanceID");
+            entity.Property(e => e.BikeName).HasMaxLength(100);
+            entity.Property(e => e.BikeType).HasMaxLength(100);
+            entity.Property(e => e.RequestDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Maintenances)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__Maintenan__UserI__68487DD7");
         });
 
         modelBuilder.Entity<Payment>(entity =>

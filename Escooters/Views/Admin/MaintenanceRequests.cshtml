@@ -1,0 +1,78 @@
+﻿@model List<Escooters.Models.Maintenance>
+@{
+    ViewData["Title"] = "Maintenance Requests";
+    Layout = "_LayoutAdmin";
+}
+<form method="get" class="row g-3 mb-4">
+    <div class="col-md-4">
+        <input type="text" name="userName" value="@ViewBag.UserName" class="form-control" placeholder="Search by user name" />
+    </div>
+    <div class="col-md-4">
+        <input type="text" name="bikeName" value="@ViewBag.BikeName" class="form-control" placeholder="Search by bike name" />
+    </div>
+    <div class="col-md-4 d-grid">
+        <button type="submit" class="btn btn-outline-info">Filter</button>
+    </div>
+</form>
+
+<div class="container mt-5">
+    <div class="bg-dark p-4 rounded shadow">
+        <h3 class="text-info mb-4">🛠 Maintenance Requests</h3>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-warning">No maintenance requests found.</div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-dark table-striped align-middle rounded">
+                    <thead class="text-center text-uppercase text-secondary small">
+                        <tr>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Bike</th>
+                            <th>Type</th>
+                            <th>Issue</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var req in Model)
+                        {
+                            <tr>
+                                <td>@req.MaintenanceId</td>
+                                <td>@req.User.FullName</td>
+                                <td>@req.BikeName</td>
+                                <td>@req.BikeType</td>
+                                <td>@req.IssueDescription</td>
+                                <td>@req.RequestDate</td>
+                                <td>
+                                    <form asp-action="DeleteMaintenance" asp-controller="Admin" method="post" onsubmit="return confirm('Are you sure?')">
+                                        <input type="hidden" name="id" value="@req.MaintenanceId" />
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Deleted',
+                text: '@TempData["Success"]',
+                confirmButtonColor: '#3085d6'
+            });
+        </script>
+    }
+}

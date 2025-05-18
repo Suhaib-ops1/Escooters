@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -26,7 +28,7 @@
         <div class="container">
             <!-- Logo -->
             <div class="logo-wrapper">
-                <a style="text-transform: uppercase;" class="logo" href="index.html">
+                <a style="text-transform: uppercase;" class="logo" asp-action="Home" asp-controller="Users">
                     <h2>EcoRide<span>Jordan</span></h2>
                 </a>
             </div>
@@ -38,10 +40,9 @@
             <!-- Menu -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" asp-action="Home" asp-controller="Users"
-                           role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                           aria-expanded="false">Home</a>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="Home" asp-controller="Users"
+                         >Home</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" asp-action="About" asp-controller="Users">About</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="Service" asp-controller="Users">Services</a></li>
@@ -74,11 +75,13 @@
                                 <li><a class="dropdown-item" asp-action="Profile" asp-controller="Account">Profile</a></li>
                                 <li><a class="dropdown-item" asp-action="ResetPassword" asp-controller="Account">Reset Password</a></li>
                                 <li><a class="dropdown-item" asp-action="MyBookings" asp-controller="Users">My Bookings</a></li>
+                                <li><a class="dropdown-item" asp-action="Create" asp-controller="Maintenance">Request Maintenance</a></li>
+                                <li><a class="dropdown-item" asp-action="MyMaintenance" asp-controller="Users">My Maintenance</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item text-danger" asp-action="Logout" asp-controller="Account">Logout</a></li>
                             </ul>
-
                         </li>
+
                     }
 
 

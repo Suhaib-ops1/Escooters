@@ -278,6 +278,47 @@ namespace Escooters.Controllers
             return RedirectToAction("Services");
         }
 
+
+        public IActionResult MaintenanceRequests(string userName, string bikeName)
+        {
+            var requests = _context.Maintenances
+                .Include(m => m.User)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(userName))
+                requests = requests.Where(r => r.User.FullName.Contains(userName));
+
+            if (!string.IsNullOrEmpty(bikeName))
+                requests = requests.Where(r => r.BikeName.Contains(bikeName));
+
+            ViewBag.UserName = userName;
+            ViewBag.BikeName = bikeName;
+
+            return View(requests.OrderByDescending(r => r.RequestDate).ToList());
+        }
+
+
+        [HttpPost]
+        public IActionResult DeleteMaintenance(int id)
+        {
+            var record = _context.Maintenances.Find(id);
+            if (record == null)
+                return NotFound();
+
+            _context.Maintenances.Remove(record);
+            _context.SaveChanges();
+
+            TempData["Success"] = "Maintenance request deleted.";
+            return RedirectToAction("MaintenanceRequests");
+        }
+
+
+
     }
+
+
+
+
+
 
 }

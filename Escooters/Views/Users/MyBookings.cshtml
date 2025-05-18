@@ -22,7 +22,6 @@
                         <th>Return</th>
                         <th>Total</th>
                         <th>Status</th>
-                        <th>Payment</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,24 +36,7 @@
                             <td>
                                 <span class="badge bg-@(booking.Status == "Confirmed" ? "success" : "warning")">@booking.Status</span>
                             </td>
-                            <td>
-                                @if (booking.Payments.Any())
-                                {
-                                    <a asp-action="DownloadInvoice" asp-route-bookingId="@booking.BookingId" class="btn btn-sm btn-success">
-                                        Download Invoice
-                                    </a>
-                                }
-                                else
-                                {
-                                    <div class="d-flex gap-2">
-                                        <a asp-action="Payment" asp-route-bookingId="@booking.BookingId" class="btn btn-sm btn-light">Pay Now</a>
-                                        <form asp-action="CancelBooking" asp-route-id="@booking.BookingId" method="post"
-                                              onsubmit="return confirm('Are you sure you want to cancel this booking?');">
-                                            <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
-                                        </form>
-                                    </div>
-                                }
-                            </td>
+                           
 
                         </tr>
                     }

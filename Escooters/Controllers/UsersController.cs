@@ -228,6 +228,24 @@ namespace Escooters.Controllers
             };
         }
 
+
+        public IActionResult MyMaintenance()
+        {
+            var userId = HttpContext.Session.GetInt32("UserID");
+            if (userId == null)
+                return RedirectToAction("Login", "Account");
+
+            var list = _context.Maintenances
+                .Where(m => m.UserId == userId)
+                .OrderByDescending(m => m.RequestDate)
+                .ToList();
+
+            return View(list);
+        }
+
+
+
+
         public IActionResult Bike_detailes()
         {
             return View();
