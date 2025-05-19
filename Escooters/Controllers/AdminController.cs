@@ -72,6 +72,36 @@ namespace Escooters.Controllers
         {
             return View();
         }
+
+        // POST: Add new bike
+        [HttpPost]
+        public async Task<IActionResult> AddBike(Bike bike, IFormFile ImageFile)
+        {
+            if (ImageFile != null && ImageFile.Length > 0)
+            {
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Uploads");
+                Directory.CreateDirectory(folder); // Ensure folder exists
+                var uniqueName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
+                var path = Path.Combine(folder, uniqueName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await ImageFile.CopyToAsync(stream);
+                }
+
+                bike.ImageUrl = "/Uploads/" + uniqueName;
+            }
+
+            _context.Bikes.Add(bike);
+            _context.SaveChanges();
+
+            TempData["Success"] = "Bike added successfully!";
+            return RedirectToAction("Bikes");
+        }
+
+
+
+
         [HttpGet]
         public IActionResult EditBike(int id)
         {
@@ -110,35 +140,10 @@ namespace Escooters.Controllers
 
             await _context.SaveChangesAsync();
             TempData["Success"] = "Bike updated successfully!";
-            return RedirectToAction("ManageBikes");
-        }
-
-        // POST: Add new bike
-        [HttpPost]
-        public async Task<IActionResult> AddBike(Bike bike, IFormFile ImageFile)
-        {
-            if (ImageFile != null && ImageFile.Length > 0)
-            {
-                var folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Uploads");
-                Directory.CreateDirectory(folder); // Ensure folder exists
-                var uniqueName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
-                var path = Path.Combine(folder, uniqueName);
-
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await ImageFile.CopyToAsync(stream);
-                }
-
-                bike.ImageUrl = "/Uploads/" + uniqueName;
-            }
-
-            _context.Bikes.Add(bike);
-            _context.SaveChanges();
-
-            TempData["Success"] = "Bike added successfully!";
             return RedirectToAction("Bikes");
         }
 
+        
 
 
         [HttpPost]
